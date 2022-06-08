@@ -6,7 +6,7 @@ async function getMultiple(page = 1){
     const offset = helper.getOffset(page,config.listPerPage);
     const rows = await db.query(
         `SELECT id, username, password, email, role
-        FROM jlist LIMIT ${offset},${config.listPerPage}
+        FROM users LIMIT ${offset},${config.listPerPage}
         `
     );
     const data = helper.emptyOrRows(rows)
