@@ -21,3 +21,30 @@ async function getMultiple(page = 1){
 module.exports = {
     getMultiple
 }
+
+async function create(language){
+    console.log(`INSERT INTO languages
+    (name,description,year)
+    VALUES
+    ('${language.name}','${language.description}',${language.year})
+    `);
+
+    const result = await db.query(
+        `INSERT INTO languages (name,description,year) VALUES
+        ('${language.name}','${language.description}',${language.year})
+        `
+    );
+
+    let message = "Error in creating programming language";
+    if(result.affectedRows){
+        message = "A new language has been added";
+    }
+
+    return {message}
+
+}
+
+module.exports = {
+    getMultiple,
+    create
+}
